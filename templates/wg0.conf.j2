@@ -1,0 +1,17 @@
+[Interface]
+Address = {{ wireguard_address }}
+ListenPort = {{ wireguard_port }}
+PrivateKey = {{ wireguard_privkey }}
+SaveConfig = false
+PostUp = firewall-cmd --add-port 57820/udp; firewall-cmd --add-masquerade; firewall-cmd --add-forward; firewall-cmd --add-interface=wg0
+PostDown = firewall-cmd --remove-port 57820/udp; firewall-cmd --remove-masquerade; firewall-cmd --remove-forward; firewall-cmd --remove-interface=wg0
+
+{% for peer in wireguard_peers %}
+# Peer {{ peer.name | d('') }} (wg{{ loop.index0 }})
+[Peer]
+PublicKey = {{ peer.pubkey }}
+{% if peer.psk %}
+PresharedKey = {{ peer.psk }}
+{% endif %}
+AllowedIPs = {{ peer.ips }}
+{% endfor %}

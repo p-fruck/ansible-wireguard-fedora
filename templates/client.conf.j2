@@ -1,0 +1,13 @@
+# wg{{ idx0 }}: {{ peer.name | d('no name') }}
+[Interface]
+PrivateKey = INSERT_PRIVKEY_HERE
+Address = {{ peer.ips }}
+DNS = {{ wireguard_dns }}
+
+[Peer]
+PublicKey = {{ wireguard_pubkey }}
+{% if peer.psk %}
+PresharedKey = {{ peer.psk }}
+{% endif %}
+Endpoint = {{ wireguard_hostname }}:{{ wireguard_port }}
+AllowedIPs = {{ wireguard_allowed_ips }}

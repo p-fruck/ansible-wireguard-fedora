@@ -1,5 +1,7 @@
 [Interface]
-Address = {{ wireguard_address }}
+{% for address in wireguard_addresses %}
+Address = {{ address }}
+{% endfor %}
 ListenPort = {{ wireguard_port }}
 PrivateKey = {{ wireguard_privkey }}
 SaveConfig = false

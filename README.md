@@ -23,7 +23,9 @@ wireguard_privkey: XXX
 # server public key
 wireguard_pubkey: XXX
 # internal server ip(s) and subnet
-wireguard_address: 192.168.10.1/24, ....
+wireguard_addresses:
+- 192.168.10.1/24
+- fdf5:...:0::/64
 
 # === Client config
 # The IPs the client can access (split tunnel or full tunnel)

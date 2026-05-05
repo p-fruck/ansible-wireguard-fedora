@@ -1,4 +1,5 @@
-- hosts: wireguard
+- name: Wireguard Fedora
+  hosts: wireguard
   roles:
     # use pfruck.wireguard when running from other directory
     - .
